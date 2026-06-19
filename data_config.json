@@ -1,0 +1,28 @@
+{
+    "vip_price_30d": 30000,
+    "bank_info": "MB Bank: 0395579201 ( TRAN MINH HUY )",
+    "new_user_free_vip_days": 100,
+    "required_groups": [
+        {
+            "username": "@sharetuttrickk",
+            "link": "https://t.me/sharetuttrickk"
+        }
+    ],
+    "free_features": {
+        "get_cover": true,
+        "them_uid_fb": true,
+        "check_meta": false,
+        "check_info": true,
+        "them_tiktok": false,
+        "them_post_fb": false,
+        "them_group_fb": false,
+        "them_instagram": false,
+        "them_youtube": false,
+        "bot_con": false,
+        "get_avatar": true,
+        "tim_nhac": true,
+        "ma_2fa": true,
+        "check_faq": false
+    },
+    "allow_auto_welcome_vip": false
+}
