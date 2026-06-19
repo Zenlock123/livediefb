@@ -1,4 +1,6 @@
 import os
+import threading
+from http.server import HTTPServer, BaseHTTPRequestHandler
 
 import sys
 
@@ -7,6 +9,25 @@ import subprocess
 import asyncio
 
 
+
+# --- BẮT ĐẦU ĐOẠN CODE ĐÁNH LỪA RENDER ---
+class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(b"Bot is alive and running well!")
+
+def run_dummy_server():
+    # Lấy port từ Render cấp, nếu không có thì dùng 10000
+    port = int(os.environ.get("PORT", 10000))
+    server_address = ('0.0.0.0', port)
+    httpd = HTTPServer(server_address, SimpleHTTPRequestHandler)
+    print(f"Bật server ảo để pass qua Render health check trên port {port}...")
+    httpd.serve_forever()
+
+# Chạy server ảo ở một luồng (thread) chạy ngầm song song với bot
+threading.Thread(target=run_dummy_server, daemon=True).start()
+# --- KẾT THÚC ĐOẠN CODE ĐÁNH LỪA RENDER ---
 
 def install_package(package_name, import_name=None):
 
