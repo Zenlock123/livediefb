@@ -1,0 +1,9 @@
+Pillow
+aiohttp
+beautifulsoup4
+emoji
+playwright
+pyotp
+requests
+pyTelegramBotAPI
+urllib3
