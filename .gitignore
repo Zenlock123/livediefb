@@ -1,0 +1,21 @@
+# 1. Bỏ qua file rác của hệ thống và Python
+__pycache__/
+.DS_Store
+
+# 2. Bỏ qua các file cấu hình, token và cookie
+cookie.txt
+admin.txt
+.env
+
+# 3. Bỏ qua TẤT CẢ các file dữ liệu (JSON) sinh ra trong lúc bot chạy
+data_*
+all_users.json
+codes.json
+grig_data.json
+uid_memory.json
+youtube_channels.json
+
+# 4. Bỏ qua TẤT CẢ các thư mục cache chứa ảnh/dữ liệu rác
+cache_images/
+grig_avatar_cache/
+grig_cache/
