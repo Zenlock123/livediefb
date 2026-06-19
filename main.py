@@ -195,7 +195,7 @@ def _fast_cache_set(key, data):
     except Exception:
         pass
 
-TOKEN = "8897537041:AAEJIWm3dvf0o2EXa7hjQgqeq_pK30o7Pwg"
+TOKEN = "8972733821:AAGBSn1Jyy9HdLRIaO9Lw9QDAIUv14o9erw"
 
 BOSS_ID = 7203678858
 
