@@ -5905,45 +5905,38 @@ def command_checkfb(message):
 def show_menu(message): 
 
     user_id = message.from_user.id
+    chat_id = message.chat.id
 
-    msg = f"""
-📋 MENU CHỨC NĂNG • CHECKLIVE.NIN ⭐️
-──────────────
-『QUẢN LÝ & THEO DÕI UID 📌』
-✦ 🟢 Theo dõi UID Facebook theo thời gian thực
-✦ 📥 Hỗ trợ theo dõi hàng loạt UID
-✦ 🔄 Phân loại trạng thái LIVE / DIE rõ ràng
-✦ ⚡ Tự động cập nhật khi UID thay đổi trạng thái
-──────────────
-『CÔNG CỤ FACEBOOK 🔵』
-✦ 🔍 Check trạng thái Live / Die UID
-✦ ✔️ Check Meta Verified (tích xanh)
-✦ 🖼️ Lấy avatar Facebook
-✦ 🏞️ Lấy ảnh bìa Facebook
-✦ ℹ️ Xem thông tin chi tiết tài khoản
-✦ 🔎 Check FAQ/DIE dạng 282/956
-──────────────
-『CÔNG CỤ TIKTOK 🎵』
-✦ 🎯 Theo dõi UID TikTok
-✦ 📋 Quản lý danh sách TikTok đang check
-✦ 📊 Thống kê trạng thái hoạt động
-──────────────
-『GROUP FB & INSTAGRAM 👥📷』
-✦ 👥 Theo dõi Facebook Group LIVE/DIE
-✦ 📷 Theo dõi tài khoản Instagram LIVE/DIE
-──────────────
-『BOT CON RIÊNG 🤖』
-✦ 🤖 Tạo Bot Telegram riêng của bạn
-✦ 🔑 Thêm Bot Token từ BotFather
-✦ 🔄 Đồng bộ dữ liệu với bot chính
-✦ 🔔 Nhận thông báo tracking qua bot riêng
-──────────────
-✦ 💬 Tele: @NGUYENMAININ
-✦ ☎️ Zalo: 0862197064
-✦ 🌐 Link: https://t.me/checkidmaininbot
-"""
+    cfg = get_config()
+    groups = cfg.get("required_groups", [])
+    primary_link = groups[0].get("link") if groups else "https://t.me/thonbaochecklive_nin"
 
-    markup = types.InlineKeyboardMarkup(row_width=2)
+    msg = (
+        "📋 𝗠𝗘𝗡𝗨 • 𝗕𝗢𝗧 𝗖𝗛𝗘𝗖𝗞 𝗟𝗜𝗩𝗘/𝗗𝗜𝗘\n\n"
+        "🔵 𝗙𝗔𝗖𝗘𝗕𝗢𝗢𝗞\n"
+        "┣ 🔍 Check UID LIVE/DIE\n"
+        "┣ ✅ Check Meta Verified\n"
+        "┣ 🖼️ Lấy Avatar\n"
+        "┣ 🌄 Lấy Ảnh Bìa\n"
+        "┣ ℹ️ Xem Thông Tin\n"
+        "┗ 🚨 Check FAQ • 282 • 956\n\n"
+        "📡 𝗧𝗥𝗔𝗖𝗞𝗜𝗡𝗚\n"
+        "┣ 👤 Theo Dõi UID Facebook\n"
+        "┣ 🎵 Theo Dõi UID TikTok\n"
+        "┣ 👥 Theo Dõi Group Facebook\n"
+        "┣ 📷 Theo Dõi Instagram\n"
+        "┗ ⚡ Cập Nhật Realtime\n\n"
+        "🤖 𝗕𝗢𝗧 𝗥𝗜Ê𝗡𝗚\n"
+        "┣ 🔑 Thêm Token BotFather\n"
+        "┣ 🔄 Đồng Bộ Dữ Liệu\n"
+        "┣ 🔔 Nhận Thông Báo Riêng\n"
+        "┗ 🚀 Hoạt Động 24/7\n\n"
+        "━━━━━━━━━━━━━━\n"
+        "⚙️ Nhanh • Ổn Định • Tự Động\n"
+        "━━━━━━━━━━━━━━"
+    )
+
+    markup = types.InlineKeyboardMarkup(row_width=1)
 
     cfg = get_config()
     groups = cfg.get("required_groups", [])
@@ -6928,11 +6921,11 @@ def vip_info_callback(call):
     msg = (
         "⭐ *NÂNG CẤP VIP*\n\n"
         "💰 Giá: *30,000đ / 30 ngày*\n"
-        "🏦 MB Bank: `0862197064` ( Nguyễn Mai Nin )\n"
+        "🏦 MB Bank: `0395579201` ( TRAN MINH HUY )\n"
         f"📝 Nội dung: `Buy  {user_id}`\n\n"
         "Sau khi chuyển khoản, nhấn Admin để kích hoạt."
     )
-    qr_url = f"https://img.vietqr.io/image/MB-0862197064-compact2.png?amount=30000&addInfo=Buy%20{user_id}&accountName=NGUYEN%20MAI%20NIN"
+    qr_url = f"https://img.vietqr.io/image/MB-0395579201-compact2.png?amount=30000&addInfo=Buy%20{user_id}&accountName=TRAN%20MINH%20HUY"
     mk_vip = types.InlineKeyboardMarkup(row_width=1)
     mk_vip.add(
         types.InlineKeyboardButton("💰 Nạp tiền", callback_data="donate_copy_stk"),
@@ -6948,25 +6941,25 @@ def vip_info_callback(call):
 def donate_callback(call):
 
     if call.data == "donate_copy_stk":
-        bot.answer_callback_query(call.id, "✅ STK: 0862197064 — MB Bank\nChủ TK: NGUYỄN MAI NIN", show_alert=True)
+        bot.answer_callback_query(call.id, "✅ STK: 0395579201 — MB Bank\nChủ TK: TRAN MINH HUY", show_alert=True)
     elif call.data == "show_donate":
         bot.answer_callback_query(call.id)
         user_id = call.from_user.id
         chat_id = call.message.chat.id
-        qr_url = f"https://img.vietqr.io/image/MB-0862197064-compact2.png?amount=0&addInfo=DH%20Donate%20{user_id}&accountName=NGUYEN%20MAI%20NIN"
+        qr_url = f"https://img.vietqr.io/image/MB-0395579201-compact2.png?amount=0&addInfo=DH%20Donate%20{user_id}&accountName=TRAN%20MINH%20HUY"
         caption = (
             "💝 *ỦNG HỘ DUY TRÌ SERVER*\n"
             "───────────────\n"
             "🏦 NH: Mb Bank\n"
-            "💳 STK: `0862197064`\n"
-            "👤 CTK: NGUYỄN MAI NIN\n"
+            "💳 STK: `0395579201`\n"
+            "👤 CTK: TRAN MINH HUY\n"
             f"📝 ND: `DH Donate {user_id}`\n"
             "───────────────\n"
             "💖 Cảm ơn bạn đã ủng hộ bot!\n"
             "ℹ️ _Donate không tự động check_"
         )
         mk = types.InlineKeyboardMarkup()
-        mk.add(types.InlineKeyboardButton("💳 Sao chép STK: 0862197064", callback_data="donate_copy_stk"))
+        mk.add(types.InlineKeyboardButton("💳 Sao chép STK: 0395579201", callback_data="donate_copy_stk"))
         try:
             bot.send_photo(chat_id, qr_url, caption=caption, parse_mode="Markdown", reply_markup=mk)
         except:
@@ -7379,7 +7372,7 @@ def handle_callback(call):
 
         elif call.data == "botcon_copy_stk":
             bot.answer_callback_query(call.id,
-                "✅ STK: 0862197064 — MB Bank\nChủ TK: NGUYỄN MAI NIN",
+                "✅ STK: 0395579201 — MB Bank\nChủ TK: TRAN MINH HUY",
                 show_alert=True)
 
         elif call.data.startswith("botcon_vip_bill_"):
@@ -9961,20 +9954,20 @@ def guitn_helper(message, content, photo_id=None):
 def cmd_donate(message):
     user_id = message.from_user.id
     chat_id = message.chat.id
-    qr_url = f"https://img.vietqr.io/image/MB-0862197064-compact2.png?amount=0&addInfo=DH%20Donate%20{user_id}&accountName=NGUYEN%20MAI%20NIN"
+    qr_url = f"https://img.vietqr.io/image/MB-0395579201-compact2.png?amount=0&addInfo=DH%20Donate%20{user_id}&accountName=TRAN%20MINH%20HUY"
     caption = (
         "💝 *ỦNG HỘ DUY TRÌ SERVER*\n"
         "─────────────────\n"
         "🏦 NH: MB Bank\n"
-        "💳 STK: `0862197064`\n"
-        "👤 CTK: NGUYỄN MAI NIN\n"
+        "💳 STK: `0395579201`\n"
+        "👤 CTK: TRAN MINH HUY\n"
         f"📝 ND: `DH Donate {user_id}`\n"
         "─────────────────\n"
         "💖 Cảm ơn bạn đã ủng hộ bot!\n"
         "ℹ️ _Donate không tự động check_"
     )
     mk_donate = types.InlineKeyboardMarkup()
-    mk_donate.add(types.InlineKeyboardButton("💳 Sao chép STK: 0862197064", callback_data="donate_copy_stk"))
+    mk_donate.add(types.InlineKeyboardButton("💳 Sao chép STK: 0395579201", callback_data="donate_copy_stk"))
     try:
         bot.send_photo(chat_id, qr_url, caption=caption, parse_mode="Markdown", reply_markup=mk_donate)
     except:
@@ -10229,20 +10222,20 @@ def handle_text(message):
         return
 
     elif message.text == "💝 Donate":
-        qr_url = f"https://img.vietqr.io/image/MB-0862197064-compact2.png?amount=0&addInfo=DH%20Donate%20{user_id}&accountName=NGUYEN%20MAI%20NIN"
+        qr_url = f"https://img.vietqr.io/image/MB-0395579201-compact2.png?amount=0&addInfo=DH%20Donate%20{user_id}&accountName=TRAN%20MINH%20HUY"
         caption = (
             "💝 *ỦNG HỘ DUY TRÌ SERVER*\n"
             "─────────────────\n"
             "🏦 NH: MB Bank\n"
-            "💳 STK: `0862197064`\n"
-            "👤 CTK: NGUYỄN MAI NIN\n"
+            "💳 STK: `0395579201`\n"
+            "👤 CTK: TRAN MINH HUY\n"
             f"📝 ND: `DH Donate {user_id}`\n"
             "─────────────────\n"
             "💖 Cảm ơn bạn đã ủng hộ bot!\n"
             "ℹ️ _Donate không tự động check_"
         )
         mk_donate = types.InlineKeyboardMarkup()
-        mk_donate.add(types.InlineKeyboardButton("💳 Sao chép STK: 0862197064", callback_data="donate_copy_stk"))
+        mk_donate.add(types.InlineKeyboardButton("💳 Sao chép STK: 0395579201", callback_data="donate_copy_stk"))
         try:
             bot.send_photo(chat_id, qr_url, caption=caption, parse_mode="Markdown", reply_markup=mk_donate)
         except:
@@ -10557,9 +10550,9 @@ def handle_text(message):
 
                 
 
-                qr_url = f"https://qr.sepay.vn/img?acc=0862197064&bank=ICB&amount={amt}&des={user_id}&template=compact&download=false"
+                qr_url = f"https://qr.sepay.vn/img?acc=0395579201&bank=ICB&amount={amt}&des={user_id}&template=compact&download=false"
 
-                form_msg = f"▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n🔥 HỆ THỐNG NẠP TIỀN NHANH 🔥\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n🏦 NGÂN HÀNG: MBBANK\n💳 STK: 0862197064\n👤 CHỦ TK: NGUYEN MAI NIN\n💰 SỐ TIỀN: {format_vnd(amt)} VNĐ\n\n📌 NỘI DUNG CK: 👉 {user_id} 👈\n\n👉 QUÉT MÃ QR HOẶC CK THEO THÔNG TIN TRÊN\n📝 Gửi bill tại đây để Admin duyệt.\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬"
+                form_msg = f"▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n🔥 HỆ THỐNG NẠP TIỀN NHANH 🔥\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n🏦 NGÂN HÀNG: MBBANK\n💳 STK: 0395579201\n👤 CHỦ TK: TRAN MINH HUY\n💰 SỐ TIỀN: {format_vnd(amt)} VNĐ\n\n📌 NỘI DUNG CK: 👉 {user_id} 👈\n\n👉 QUÉT MÃ QR HOẶC CK THEO THÔNG TIN TRÊN\n📝 Gửi bill tại đây để Admin duyệt.\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬"
 
                 bot.send_photo(chat_id, qr_url, caption=form_msg)
 
@@ -15221,17 +15214,17 @@ def botcon_vip_buy_request(chat_id, user_id, plan_key):
     disc_text = f"  🏷 Tiết kiệm {plan['discount']}%" if plan["discount"] else ""
     noi_dung  = f"BOTCON {user_id} {plan_key}T"
     amount    = plan["price"]
-    qr_url    = (f"https://img.vietqr.io/image/MB-0862197064-compact2.png"
+    qr_url    = (f"https://img.vietqr.io/image/MB-0395579201-compact2.png"
                  f"?amount={amount}"
                  f"&addInfo={noi_dung.replace(' ', '%20')}"
-                 f"&accountName=NGUYEN%20MAI%20NIN")
+                 f"&accountName=TRAN%20MINH%20HUY")
     caption = (
         f"💳 <b>THANH TOÁN VIP BOT CON</b>\n\n"
         f"📦 Gói: <b>{plan['label']}</b>{disc_text}\n"
         f"💰 Số tiền: <b>{format_vnd(amount)}</b>\n\n"
         f"🏦 NH: <b>MB Bank</b>\n"
-        f"💳 STK: <code>0862197064</code>\n"
-        f"👤 CTK: <b>NGUYỄN MAI NIN</b>\n\n"
+        f"💳 STK: <code>0395579201</code>\n"
+        f"👤 CTK: <b>TRAN MINH HUY</b>\n\n"
         f"📝 Nội dung CK: <code>{noi_dung}</code>\n"
         f"⚠️ <i>Nhập đúng nội dung để Admin duyệt nhanh!</i>\n\n"
         f"📲 Quét QR hoặc CK theo thông tin trên\n"
@@ -15239,7 +15232,7 @@ def botcon_vip_buy_request(chat_id, user_id, plan_key):
     )
     mk = types.InlineKeyboardMarkup(row_width=1)
     mk.add(types.InlineKeyboardButton(
-        "📋 Sao chép STK: 0862197064", callback_data="botcon_copy_stk"))
+        "📋 Sao chép STK: 0395579201", callback_data="botcon_copy_stk"))
     mk.add(types.InlineKeyboardButton(
         f"📸 Gửi bill xác nhận", callback_data=f"botcon_vip_bill_{plan_key}"))
     mk.add(types.InlineKeyboardButton(
