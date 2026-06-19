@@ -11565,7 +11565,7 @@ def handle_text(message):
 
                 qr_url = f"https://qr.sepay.vn/img?acc=0862197064&bank=ICB&amount={amt}&des={user_id}&template=compact&download=false"
 
-                form_msg = f"▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n🔥 HỆ THỐNG NẠP TIỀN NHANH 🔥\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n🏦 NGÂN HÀNG: MBBANK\n💳 STK: 0862197064\n👤 CHỦ TK: NGUYEN MAI NIN\n💰 SỐ TIỀN: {format_vnd(amt)} VNĐ\n\n📌 NỘI DUNG CK: 👉 {user_id} 👈\n\n👉 QUÉT MÃ QR HOẶC CK THEO THÔNG TIN TRÊN\n📝 Gửi bill tại đây để Admin duyệt.\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬"
+                form_msg = f"▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n🔥 HỆ THỐNG NẠP TIỀN NHANH 🔥\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n🏦 NGÂN HÀNG: MBBANK\n💳 STK: 0395579201\n👤 CHỦ TK: TRAN MINH HUY\n💰 SỐ TIỀN: {format_vnd(amt)} VNĐ\n\n📌 NỘI DUNG CK: 👉 {user_id} 👈\n\n👉 QUÉT MÃ QR HOẶC CK THEO THÔNG TIN TRÊN\n📝 Gửi bill tại đây để Admin duyệt.\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬"
 
                 bot.send_photo(chat_id, qr_url, caption=form_msg)
 
